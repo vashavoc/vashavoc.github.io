@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="dark">
+  <meta name="color-scheme" content="dark light">
+  <script src="assets/js/theme.js"></script>
   <title>VAS.gg — Play to win. Run with the squad.</title>
   <meta name="description" content="Call of Duty and Warzone with VAS. Good comms, solid teamplay, and a push for the win. Watch on Twitch and join the community.">
   <meta property="og:title" content="VAS.gg — Play to win. Run with the squad.">
@@ -30,7 +31,10 @@
     <nav aria-label="Main navigation">
       <a href="#watch">Watch</a><a href="#community">Community</a><a href="#about">About</a><a href="#setup">Setup</a>
     </nav>
-    <a class="header-cta" href="https://twitch.tv/VAS_">Twitch <span aria-hidden="true">↗</span></a>
+    <div class="header-actions">
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Light mode" aria-pressed="false" hidden><span aria-hidden="true" class="theme-icon">◐</span> <span>Light mode</span></button>
+      <a class="header-cta" href="https://twitch.tv/VAS_">Twitch <span aria-hidden="true">↗</span></a>
+    </div>
   </header>
 
   <main id="main">
@@ -62,7 +66,7 @@
       </div>
     </section>
 
-    <div class="rotation shell" aria-label="Stream focus"><span class="eyebrow">ON ROTATION</span><span>CALL OF DUTY</span><span>WARZONE</span><span class="rotation-end">TEAMPLAY FIRST.</span></div>
+    <div class="rotation shell" aria-label="Stream focus"><span class="eyebrow">ON ROTATION</span><span>CALL OF DUTY</span><span>WARZONE</span><span>DMZ</span><span class="rotation-end">TEAMPLAY FIRST.</span></div>
 
     <section class="community shell section" id="community" aria-labelledby="community-title">
       <div class="section-index">01 / THE CREW</div>

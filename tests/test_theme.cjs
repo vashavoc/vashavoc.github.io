@@ -1,0 +1,36 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const vm = require('node:vm');
+const file = 'assets/js/theme.js';
+assert(fs.existsSync(file), 'theme controller exists');
+const source = fs.readFileSync(file, 'utf8');
+function run(saved, blocked = false) {
+ const attrs = {}; let ready, click, stored;
+ const button = { hidden: true, setAttribute: (k,v) => { attrs[k] = v; }, addEventListener: (_,fn) => { click=fn; } };
+ const root = { dataset: {} };
+ vm.runInNewContext(source, { document: { documentElement: root, addEventListener: (_,fn) => { ready=fn; }, getElementById: () => button }, window: { localStorage: { getItem: () => { if(blocked) throw Error('blocked'); return saved; }, setItem: (_,v) => { if(blocked) throw Error('blocked'); stored=v; } } } });
+ ready();
+ return { root, attrs, button, click: () => click(), stored: () => stored };
+}
+const dark = run(null);
+assert.equal(dark.button.textContent, 'Light mode');
+assert.equal(dark.attrs['aria-label'], 'Switch to light mode');
+dark.click();
+assert.equal(dark.button.textContent, 'Dark mode');
+assert.equal(dark.attrs['aria-label'], 'Switch to dark mode');
+dark.click();
+assert.equal(run('light').button.textContent, 'Dark mode');
+assert.equal(dark.root.dataset.theme, 'dark');
+assert.equal(dark.button.hidden, false);
+assert.equal(dark.attrs['aria-pressed'], 'false');
+dark.click();
+assert.equal(dark.root.dataset.theme, 'light');
+assert.equal(dark.attrs['aria-pressed'], 'true');
+assert.equal(dark.stored(), 'light');
+dark.click();
+assert.equal(dark.root.dataset.theme, 'dark');
+assert.equal(run('light').root.dataset.theme, 'light');
+assert.equal(run('invalid').root.dataset.theme, 'dark');
+const blocked = run(null, true); blocked.click();
+assert.equal(blocked.root.dataset.theme, 'light');
+console.log('PASS: dark default, theme toggle, saved preference, invalid/storage-blocked fallback');

@@ -30,3 +30,25 @@
     frame.focus();
   });
 })();
+
+// Progressive enhancement: content remains visible without JS or animation.
+(() => {
+  'use strict';
+  if (!window.matchMedia || !window.IntersectionObserver) return;
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (motion.matches) return;
+  const sections = document.querySelectorAll('.section');
+  const observer = new window.IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-revealed');
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0, rootMargin: '0px 0px -32px 0px' });
+  sections.forEach((section) => observer.observe(section));
+  motion.addEventListener('change', () => {
+    if (!motion.matches) return;
+    observer.disconnect();
+    sections.forEach((section) => section.classList.remove('is-revealed'));
+  });
+})();
