@@ -101,7 +101,8 @@ summary::-webkit-details-marker { display: none; }
 .details-indicator { font-size: 26px; font-weight: 400; color: var(--purple); line-height: 1; }
 details[open] .details-indicator { transform: rotate(45deg); }
 .setup-expanded { display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding-top: 28px; }
-.setup-expanded img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+.setup-photo { position: relative; min-height: 0; }
+.setup-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 dl { display: grid; grid-template-columns: 115px 1fr; margin: 0; gap: 12px 20px; font-size: 11px; }
 dt { color: var(--muted); } dd { margin: 0; }
 .site-footer { padding-block: 40px 24px; }
@@ -162,7 +163,7 @@ dt { color: var(--muted); } dd { margin: 0; }
   .setup-heading { display: block; }
   .setup-heading > p { margin-top: 18px; }
   .setup-expanded { grid-template-columns: 1fr; }
-  .setup-expanded img { width: 150px; }
+  .setup-photo { height: 240px; }
   dl { grid-template-columns: 95px 1fr; font-size: 10px; gap: 12px; }
   .footer-top { align-items: start; gap: 24px; }
   .footer-top p { max-width: 150px; }
