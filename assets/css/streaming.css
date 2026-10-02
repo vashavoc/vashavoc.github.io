@@ -86,9 +86,18 @@ h1 span { color: var(--purple); }
 .stream-poster { width: 100%; height: 100%; object-fit: contain; object-position: center; }
 .stream-portrait {
   position: absolute; inset: 0 auto 0 0; width: 65%; height: 100%;
-  object-fit: cover; object-position: 55% center; pointer-events: none;
+  object-fit: cover; object-position: var(--portrait-position, 55% center); pointer-events: none;
+  opacity: 0;
   -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 55%, transparent 100%);
   mask-image: linear-gradient(90deg, #000 0%, #000 55%, transparent 100%);
+}
+.stream-portrait.is-current { opacity: 1; }
+.portrait-controls { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; padding-top: 12px; border-top: 1px solid #ffffff24; }
+.portrait-controls > span { margin-right: auto; color: #c5c0cc; font-size: 11px; letter-spacing: .04em; }
+.portrait-controls button { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; padding: 8px 12px; border: 1px solid #ffffff38; border-radius: 5px; background: #191a1e; color: #f6f5f8; font-size: 11px; font-weight: 600; cursor: pointer; }
+.portrait-controls button:is(:hover, :focus-visible) { border-color: #62d5ee; color: #62d5ee; }
+@media (prefers-reduced-motion: no-preference) {
+  .stream-portrait { transition: opacity 1s ease-in-out; }
 }
 .stream-intro { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 6px 20px; align-items: center; padding: 22px 24px; background: #0b0b0e; }
 .stream-intro h2 { font-size: 30px; }
@@ -122,7 +131,7 @@ h1 span { color: var(--purple); }
 .discord-panel > p { padding: 12px 17px; color: var(--muted); font-size: 12px; }
 .about { grid-template-columns: 125px 1fr 1fr; align-items: start; }
 .about-photo { position: relative; }
-.about-photo img { width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: 49% center; }
+.about-photo img { width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: 55% center; }
 .about-photo > span { position: absolute; bottom: 0; left: 0; right: 0; padding: 22px 18px 15px; background: linear-gradient(transparent, #0009); color: white; font-size: 11px; letter-spacing: .15em; }
 .about-copy { padding-top: 4px; }
 .about-copy .eyebrow { color: var(--purple); }

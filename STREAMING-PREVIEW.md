@@ -8,6 +8,16 @@ Open `preview.html` directly, or serve the repository:
 
 Then open http://127.0.0.1:8765/preview.html.
 
+## Latest local portrait rotation (awaiting review)
+
+The attached streaming-setup photo (`vas-setup.webp`) is kept only in About, not in the hero rotation. The hero rotates through the other four supplied photos in their original order: `vas-shirt.webp`, `vas-purple-room.webp`, `vas-outdoors.webp`, and `vas-red-hoodie.webp`. The black-and-white VAS-shirt portrait is the default. The MW4 artwork and gradient blend stay fixed; portraits crossfade over one second, with eight seconds between advances. Each photo has its own face-preserving crop.
+
+The controls provide Pause/Play and Previous/Next. Manual browsing stays paused. Autoplay pauses on hover, keyboard focus, or a hidden tab, and stops when the Twitch player replaces the poster. Reduced-motion mode starts paused and disables the fade; without JavaScript, the default VAS-shirt photo remains visible and slideshow controls stay hidden. Failed or not-yet-loaded photos are skipped without replacing the last good frame.
+
+The five local WebP copies total 373016 bytes and contain no EXIF/XMP metadata. The original Photos Library files were only read; nothing in the library was modified. The smaller purple-room source remains at its original 480×360 resolution rather than being upscaled.
+
+Verified: 12 Python tests and four Node suites; real browser navigation through the four remaining portraits in order, wraparound, and the unchanged About photo. The unchanged carousel behavior was previously checked for real autoplay/pause, keyboard Enter activation, light/dark display, reduced-motion startup, no-JavaScript fallback, player shutdown, and layouts from 320 to 1440px. This update has not been committed or pushed.
+
 ## Approved playful / press-image pass
 
 The current local version keeps the hand-drawn-style headline underline, dotted backdrop, angled game tags and photo framing, offset panel shadows, and tactile navigation/social links. The rejected “SQUAD UP!” sticker has been removed entirely. Original VAS logo colors, copy, channel destinations, personal photo, hardware, and production metadata are retained. Both HTML pages share the same styling; the preview remains analytics-free and noindex.

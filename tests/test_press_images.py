@@ -19,18 +19,30 @@ class PressImageTests(unittest.TestCase):
                     self.assertTrue(asset.is_file())
                     self.assertLess(asset.stat().st_size, 700_000)
                 photos = [a.get('src') for tag, a in page.elements if tag == 'img']
-                self.assertIn('assets/images/image02.jpg', photos, 'Keep VAS’s personal photo')
+                self.assertEqual(photos.count('assets/images/vas-setup.webp'), 1, 'Keep setup photo only in the About section')
 
-    def test_hero_blend_restores_original_portrait_on_both_pages(self):
+    def test_hero_rotates_through_four_remaining_portraits_on_both_pages(self):
+        expected = ['vas-shirt.webp', 'vas-purple-room.webp', 'vas-outdoors.webp', 'vas-red-hoodie.webp']
         for filename in ('index.html', 'preview.html'):
             with self.subTest(page=filename):
-                page = PageParser((ROOT / filename).read_text())
+                text = (ROOT / filename).read_text()
+                page = PageParser(text)
                 portraits = [a for tag, a in page.elements if tag == 'img' and 'stream-portrait' in a.get('class', '').split()]
-                self.assertEqual(len(portraits), 1, 'Original hero portrait must be layered with the MW4 poster')
-                portrait = portraits[0]
-                self.assertEqual(portrait.get('src'), 'assets/images/image05.jpg')
-                self.assertTrue(portrait.get('alt'))
-                self.assertEqual((portrait.get('width'), portrait.get('height')), ('1200', '675'))
+                self.assertEqual([a.get('src') for a in portraits], ['assets/images/' + name for name in expected])
+                self.assertIn('is-current', portraits[0].get('class', '').split())
+                self.assertIn('Photo 1 / 4', text)
+                for index, portrait in enumerate(portraits):
+                    self.assertTrue(portrait.get('alt'))
+                    self.assertEqual(portrait.get('aria-hidden'), 'false' if index == 0 else 'true')
+                    self.assertIn('width', portrait)
+                    self.assertIn('height', portrait)
+                    self.assertLess((ROOT / portrait['src']).stat().st_size, 200_000)
+                ids = {a.get('id'): a for tag, a in page.elements}
+                for control in ('portrait-previous', 'portrait-next', 'portrait-toggle'):
+                    self.assertEqual(ids[control].get('type'), 'button')
+                self.assertIn('hidden', ids['portrait-controls'], 'No dead controls without JavaScript')
+                self.assertIn('assets/js/portraits.js', text)
+                self.assertNotIn('photoslibrary', text)
                 self.assertTrue(any(tag == 'div' and a.get('class') == 'stream-art' for tag, a in page.elements))
 
 if __name__ == '__main__':

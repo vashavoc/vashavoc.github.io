@@ -55,13 +55,22 @@
         <div class="stream-screen" id="stream-screen">
           <div class="stream-art">
             <img class="stream-poster" src="assets/images/MW4_MP_003_BRANDED.webp" alt="Modern Warfare 4 multiplayer press image: an operator vaulting over a car on a city street" width="1920" height="1080" fetchpriority="high">
-            <img class="stream-portrait" src="assets/images/image05.jpg" alt="VAS relaxing under purple lighting, blended into the game artwork" width="1200" height="675" fetchpriority="high">
+            <img class="stream-portrait is-current" src="assets/images/vas-shirt.webp" alt="Black-and-white portrait of VAS wearing his hand-drawn logo shirt" width="900" height="900" fetchpriority="high" aria-hidden="false" style="--portrait-position: 45% 20%">
+            <img class="stream-portrait" src="assets/images/vas-purple-room.webp" alt="VAS in his purple-lit gaming room" width="480" height="360" aria-hidden="true" style="--portrait-position: 45% center">
+            <img class="stream-portrait" src="assets/images/vas-outdoors.webp" alt="VAS outdoors wearing an Overwatch League shirt" width="900" height="1200" aria-hidden="true" style="--portrait-position: 50% 30%">
+            <img class="stream-portrait" src="assets/images/vas-red-hoodie.webp" alt="VAS in a red hoodie holding a matching cap in front of autumn trees" width="900" height="899" aria-hidden="true" style="--portrait-position: 45% 25%">
           </div>
           <div class="stream-intro" id="stream-intro">
 
             <h2>Get in the game.</h2>
             <p>Watch the channel right here.</p>
             <a class="button light" id="load-stream" href="https://twitch.tv/VAS_">Watch VAS on Twitch <span aria-hidden="true">↗</span></a>
+            <div class="portrait-controls" id="portrait-controls" role="group" aria-label="Portrait slideshow controls" hidden>
+              <span id="portrait-count" aria-live="off">Photo 1 / 4</span>
+              <button id="portrait-previous" type="button" aria-label="Previous photo">←</button>
+              <button id="portrait-toggle" type="button" aria-label="Pause photo slideshow">Pause photos</button>
+              <button id="portrait-next" type="button" aria-label="Next photo">→</button>
+            </div>
           </div>
         </div>
         <div class="stream-footer"><p id="stream-note" aria-live="polite">Live streams &amp; past broadcasts on Twitch.</p><a href="https://twitch.tv/VAS_">Open channel <span aria-hidden="true">↗</span></a></div>
@@ -92,7 +101,7 @@
 
     <section class="about shell section" id="about" aria-labelledby="about-title">
       <div class="section-index">02 / THE PLAYER</div>
-      <div class="about-photo"><img src="assets/images/image02.jpg" alt="VAS at the microphone in his streaming setup" width="1919" height="1080" loading="lazy"><span>THE PERSON BEHIND THE COMMS</span></div>
+      <div class="about-photo"><img src="assets/images/vas-setup.webp" alt="VAS at his multi-monitor streaming setup under purple lighting" width="1200" height="676" loading="lazy"><span>THE PERSON BEHIND THE COMMS</span></div>
       <div class="about-copy">
         <p class="eyebrow">UH HI? I’M VAS.</p>
         <h2 id="about-title">Winning.<br>With fun sprinkled in.</h2>
@@ -148,5 +157,6 @@
     <div class="footer-bottom"><p>© VAS.gg. All rights reserved.</p><a href="#main">Back to top ↑</a></div>
   </footer>
   <script src="assets/js/streaming.js" defer></script>
+  <script src="assets/js/portraits.js" defer></script>
 </body>
 </html>
