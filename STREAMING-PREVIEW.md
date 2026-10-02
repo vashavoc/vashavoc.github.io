@@ -8,6 +8,21 @@ Open `preview.html` directly, or serve the repository:
 
 Then open http://127.0.0.1:8765/preview.html.
 
+## Approved playful / press-image pass
+
+The current local version keeps the hand-drawn-style headline underline, dotted backdrop, angled game tags and photo framing, offset panel shadows, and tactile navigation/social links. The rejected “SQUAD UP!” sticker has been removed entirely. Original VAS logo colors, copy, channel destinations, personal photo, hardware, and production metadata are retained. Both HTML pages share the same styling; the preview remains analytics-free and noindex.
+
+Both images from the user-supplied `press-assets.zip` are incorporated:
+
+- `MW4_MP_003_BRANDED.png` → `assets/images/MW4_MP_003_BRANDED.webp`: base of a static hero blend, with the original `image05.jpg` portrait on the left fading smoothly into the game artwork on the right. The portrait uses a CSS gradient mask, not a timed slideshow; the lower-right game branding stays uncovered.
+- `MW4_CAM_010_BRANDED.png` → `assets/images/MW4_CAM_010_BRANDED.webp`: full-frame campaign image and caption below the community copy.
+
+The 3840×2160 source frames were resized to 1920×1080 and encoded as WebP (237804 and 348110 bytes respectively). Original ZIP and extracted source PNGs are unchanged. Stream controls sit below the blended image at all sizes so neither face nor branding is covered. An active player keeps its required 300px minimum height. No release, sponsorship, live-gameplay, or schedule claims were added.
+
+Verified this pass: 12 Python tests and all three Node suites; image loading, uncropped framing, clear branding, and no horizontal overflow at 320, 390, 500, 620, 768, 850, 1024, and 1440px; a simulated narrow player at 500px retains its 300px height; light-theme mobile and dark desktop screenshots; reduced-motion startup; visible content and working Twitch destination with JavaScript disabled. The latest static blend was additionally browser-checked at 320, 390, 500, 768, 851, 1024, and 1440px for portrait loading, active masking, uncovered game branding, and fully visible controls below the image. Twitch playback itself is not tested on localhost.
+
+The blended hero was reviewed locally and approved for commit and push. The preview remains available at http://127.0.0.1:8765/preview.html.
+
 ## Included
 
 - Dark charcoal design with the existing purple/cyan brand direction.
