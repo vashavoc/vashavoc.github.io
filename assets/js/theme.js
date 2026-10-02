@@ -13,6 +13,7 @@
       const nextTheme = root.dataset.theme === 'light' ? 'dark' : 'light';
       button.textContent = nextTheme === 'light' ? 'Light mode' : 'Dark mode';
       button.setAttribute('aria-label', `Switch to ${nextTheme} mode`);
+      button.setAttribute('title', `Switch to ${nextTheme} mode`);
       button.setAttribute('aria-pressed', String(root.dataset.theme === 'light'));
     };
     update();

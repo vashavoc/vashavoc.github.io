@@ -15,9 +15,11 @@ function run(saved, blocked = false) {
 const dark = run(null);
 assert.equal(dark.button.textContent, 'Light mode');
 assert.equal(dark.attrs['aria-label'], 'Switch to light mode');
+assert.equal(dark.attrs.title, 'Switch to light mode');
 dark.click();
 assert.equal(dark.button.textContent, 'Dark mode');
 assert.equal(dark.attrs['aria-label'], 'Switch to dark mode');
+assert.equal(dark.attrs.title, 'Switch to dark mode');
 dark.click();
 assert.equal(run('light').button.textContent, 'Dark mode');
 assert.equal(dark.root.dataset.theme, 'dark');
