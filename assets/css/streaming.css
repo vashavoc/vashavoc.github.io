@@ -31,6 +31,15 @@
   .header-actions .header-cta { padding-inline: 10px; }
   .header-actions .header-cta span { margin-left: 6px; }
 }
+/* Map-only Hajin backdrop; quiet enough to keep the content readable. */
+:root { --map-opacity: .12; }
+:root[data-theme="light"] { --map-opacity: .07; }
+body { isolation: isolate; }
+body::before {
+  content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: url('../images/dmz-hajin-map.webp') center / cover no-repeat;
+  opacity: var(--map-opacity);
+}
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
 html { scroll-padding-top: 24px; }
