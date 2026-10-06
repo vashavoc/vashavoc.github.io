@@ -30,7 +30,7 @@ class PreviewTests(unittest.TestCase):
             self.assertIn('#' + section, links)
         self.assertEqual(sum(t == 'h1' for t, _ in page.elements), 1)
         self.assertTrue(any(t == 'a' and a.get('href') == '#main' for t, a in page.elements))
-        self.assertTrue(any(t == 'details' for t, _ in page.elements))
+        self.assertFalse(any(t == 'details' for t, _ in page.elements))
         self.assertNotIn('id="highlights"', text)
         self.assertNotIn('2021-2023', text)
         for t, a in page.elements:
